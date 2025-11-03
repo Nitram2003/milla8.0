@@ -1,0 +1,1 @@
+export default function Contacto(){return(<section className="mx-auto max-w-3xl px-4 py-10"><div className="card p-6"><h1 className="text-3xl font-bold mb-3">Contacto</h1><p>Escríbenos a contacto@millapeluche.cl</p></div></section>)}

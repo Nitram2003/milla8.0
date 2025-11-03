@@ -1,0 +1,1 @@
+export default function Nosotros(){return(<section className="mx-auto max-w-3xl px-4 py-10"><div className="card p-6"><h1 className="text-3xl font-bold mb-3">Nosotros</h1><p>Somos amantes de los peluches y del buen diseño.</p></div></section>)}
