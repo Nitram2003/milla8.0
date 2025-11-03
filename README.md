@@ -3,6 +3,8 @@
 ## Cómo iniciar
 ```bash
 npm install
+npm install axios #CRUD productos, usuarios
+npm install zustand
 npm run api   # inicia json-server en http://localhost:5000
 npm run dev   # inicia Vite
 ```
