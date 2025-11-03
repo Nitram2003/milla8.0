@@ -1,0 +1,35 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Osito Caramelo",
+      "precio": 14990,
+      "stock": 20,
+      "descripcion": "Suave como un abrazo dulce.",
+      "imagen": ""
+    },
+    {
+      "id": 2,
+      "nombre": "Zorrito Otoñal",
+      "precio": 16990,
+      "stock": 15,
+      "descripcion": "Colores cálidos y mirada tierna.",
+      "imagen": ""
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Admin",
+      "correo": "admin@millapeluche.cl",
+      "rol": "admin"
+    },
+    {
+      "id": 2,
+      "nombre": "Cliente",
+      "correo": "cliente@millapeluche.cl",
+      "rol": "cliente"
+    }
+  ],
+  "ventas": []
+}
