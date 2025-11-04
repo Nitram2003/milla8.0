@@ -65,7 +65,7 @@ export const useCarrito = create((set, get) => ({
     set({ items: [] });
   },
 
-  // 🔹 Recargar carrito cuando cambia de usuario (por ejemplo, al iniciar o cerrar sesión)
+  // 🔹 Recargar carrito  cuando cambia de usuario (por ejemplo, al iniciar o cerrar sesión)
   reload: () => {
     const key = getCartKey();
     const newCart = JSON.parse(localStorage.getItem(key) || "[]");
