@@ -1,0 +1,94 @@
+/* Fondo general similar al login */
+body {
+  background-color: #fff8f3;
+  background-image: radial-gradient(#f5e4da 1px, transparent 1px);
+  background-size: 20px 20px;
+  font-family: "Poppins", sans-serif;
+  color: #5a2e1f;
+}
+
+/* Contenedor del formulario */
+.contacto-container {
+  max-width: 420px;
+  margin: 80px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(255, 170, 120, 0.2);
+  padding: 35px;
+  text-align: left;
+  border: 1px solid #ffd6b0;
+}
+
+/* Título */
+.contacto-container h2 {
+  color: #7a3b17;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Formulario */
+.contacto-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Etiquetas */
+.contacto-form label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #7a3b17;
+}
+
+/* Inputs, select y textarea */
+.contacto-form input,
+.contacto-form select,
+.contacto-form textarea {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #f0c8a4;
+  background: #fffaf7;
+  font-size: 0.95rem;
+  color: #5a2e1f;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contacto-form input:focus,
+.contacto-form select:focus,
+.contacto-form textarea:focus {
+  border-color: #f48c42;
+  box-shadow: 0 0 4px rgba(244, 140, 66, 0.3);
+  outline: none;
+}
+
+/* Botón */
+.contacto-form button {
+  background: #f48c42;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  font-size: 1rem;
+}
+
+.contacto-form button:hover {
+  background: #e6782c;
+  transform: translateY(-2px);
+}
+
+/* Pequeños ajustes */
+.contacto-form textarea {
+  resize: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .contacto-container {
+    margin: 40px 15px;
+    padding: 25px;
+  }
+}

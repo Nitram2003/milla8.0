@@ -22,7 +22,7 @@ export default function InicioMain() {
           </div>
         </div>
         <div className="md:col-span-5">
-          <div className="card p-6 flex items-center justify-center">
+          <div className="card p-6 flex items-center justify-center hover:shadow-gray-700 transition-all hover:scale-[1.02]">
             <img src={logo} alt="Millapeluche" className="w-56 h-56 object-contain" />
           </div>
         </div>

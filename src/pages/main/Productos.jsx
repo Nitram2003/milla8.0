@@ -49,13 +49,13 @@ export default function Productos() {
           {productos.map((p) => (
             <article
               key={p.id}
-              className="card p-4 flex flex-col items-center text-center"
+              className="card p-4 flex flex-col items-center text-center hover:shadow-gray-700 transition-all hover:scale-[1.02]"
             >
               {p.imagen ? (
                 <img
                   src={p.imagen}
                   alt={p.nombre}
-                  className="h-48 w-48 object-cover rounded-xl mb-3"
+                  className="h-48 w-48 object-cover rounded-xl mb-3 "
                 />
               ) : (
                 <div className="h-48 w-48 bg-orange-100 rounded-xl mb-3 flex items-center justify-center text-3xl">

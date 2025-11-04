@@ -29,6 +29,7 @@ export default function AdminLayout() {
             <Link to="/admin/usuarios" className="block hover:text-orange-700">👥 Usuarios</Link>
             <Link to="/admin/ventas" className="block hover:text-orange-700">💳 Ventas</Link>
             <Link to="/admin/informes" className="block hover:text-orange-700">📊 Informes</Link>
+            <Link to="/admin/comentarios" className="block hover:text-orange-700">💬 Comentarios</Link>
           </nav>
         </div>
         <button
