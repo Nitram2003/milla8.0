@@ -33,8 +33,8 @@ export default function Nosotros(){
                 <a className="mx-auto mt-4 size-10 ml-4 inline-block hover:shadow-gray-700 transition-all hover:scale-[1.3]" href="https://facebook.com">
                     <img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/facebook.svg" alt="Facebook Icon" />
                 </a>
-                
-                <a className="mx-auto mt-4 size-10 ml-4 inline-block hover:shadow-gray-700 transition-all hover:scale-[1.3]" href="https://whatsapp.com">
+
+                <a className="mx-auto mt-4 size-10 ml-4 inline-block hover:shadow-gray-700 transition-all hover:scale-[1.3]" href="https://whatsapp.com"> 
                     <img  src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/whatsapp.svg" alt="WhatsApp Icon" />
                 </a>
             </article>
