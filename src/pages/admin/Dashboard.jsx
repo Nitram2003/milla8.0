@@ -33,30 +33,30 @@ export default function Dashboard() {
       </h1>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="card bg-orange-100 border border-orange-300 p-6 text-center">
+        <div className="card bg-orange-100 border border-orange-300 p-6 text-center hover:scale-105 transition-all hover:bg-orange-200 hover:shadow-lg">
           <h2 className="text-lg font-semibold">Total ventas</h2>
           <p className="text-4xl font-bold text-orange-800">{totalVentas}</p>
         </div>
 
-        <div className="card bg-orange-100 border border-orange-300 p-6 text-center">
+        <div className="card bg-orange-100 border border-orange-300 p-6 text-center hover:scale-105 transition-all hover:bg-orange-200 hover:shadow-lg">
           <h2 className="text-lg font-semibold">Monto total</h2>
           <p className="text-4xl font-bold text-orange-800">
             ${montoTotal.toLocaleString()}
           </p>
         </div>
 
-        <div className="card bg-orange-100 border border-orange-300 p-6 text-center">
+        <div className="card bg-orange-100 border border-orange-300 p-6 text-center hover:scale-105 transition-all hover:bg-orange-200 hover:shadow-lg">
           <h2 className="text-lg font-semibold">Productos</h2>
           <p className="text-4xl font-bold text-orange-800">{productos}</p>
         </div>
 
-        <div className="card bg-orange-100 border border-orange-300 p-6 text-center">
+        <div className="card bg-orange-100 border border-orange-300 p-6 text-center hover:scale-105 transition-all hover:bg-orange-200 hover:shadow-lg">
           <h2 className="text-lg font-semibold">Usuarios</h2>
           <p className="text-4xl font-bold text-orange-800">{usuarios}</p>
         </div>
       </div>
 
-      <div className="mt-10 bg-white/90 p-6 rounded-xl shadow-md">
+      <div className="mt-10 bg-white/90 p-6 rounded-xl shadow-md ">
         <h2 className="text-xl font-semibold mb-3 text-orange-900">
           Últimas ventas
         </h2>

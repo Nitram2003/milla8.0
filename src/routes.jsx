@@ -1,4 +1,6 @@
 import App from './App'
+import ProtectedRoute from './pages/admin/ProtectedRoute.jsx'
+
 import InicioMain from './pages/main/InicioMain.jsx'
 import Productos from './pages/main/Productos.jsx'
 import ProductoDetalle from './pages/main/ProductoDetalle.jsx'
@@ -11,7 +13,11 @@ import RegistroUsuario from './pages/main/RegistroUsuario.jsx'
 import Carrito from './pages/main/Carrito.jsx'
 import CompraExitosa from './pages/main/CompraExitosa.jsx';
 import Pago from './pages/main/Pago.jsx';
-import ProtectedRoute from './pages/admin/ProtectedRoute.jsx'
+
+
+
+
+
 import AdminLayout from './pages/admin/AdminLayout.jsx'
 import Dashboard from './pages/admin/Dashboard.jsx'
 import ProductosAdmin from './pages/admin/ProductosAdmin.jsx'
@@ -19,6 +25,7 @@ import UsuariosAdmin from './pages/admin/UsuariosAdmin.jsx'
 import InformesAdmin from './pages/admin/InformesAdmin.jsx'
 import VentasAdmin from './pages/admin/VentasAdmin.jsx';
 import Comentarios from './pages/admin/Comentarios.jsx';
+import UsuariosActivos from './pages/admin/UsuariosActivos.jsx';
 
 
 function RouteError() {
@@ -51,6 +58,7 @@ const routes = [
       { path: '/carrito', element: <Carrito /> },
       { path: '/compra-exitosa', element: <CompraExitosa /> },
       { path: '/pago', element: <Pago /> },
+      
 
 
 
@@ -68,7 +76,8 @@ const routes = [
           { path: '/admin/usuarios', element: <UsuariosAdmin /> },
           { path: '/admin/informes', element: <InformesAdmin /> },
           { path: '/admin/ventas', element: <VentasAdmin /> },
-          { path: '/admin/comentarios', element: <Comentarios />}
+          { path: '/admin/comentarios', element: <Comentarios />},
+          {path: '/admin/usuarios-activos', element: <UsuariosActivos />}
 
         ]
       },

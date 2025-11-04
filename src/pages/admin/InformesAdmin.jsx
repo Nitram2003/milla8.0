@@ -46,21 +46,21 @@ export default function InformesAdmin() {
       </h1>
 
       <div className="grid md:grid-cols-3 gap-6 mb-8">
-        <div className="card bg-orange-100 border border-orange-300 p-6 text-center">
+        <div className="card bg-orange-100 border border-orange-300 p-6 text-center hover:scale-105 transition-all hover:bg-orange-200 hover:shadow-lg">
           <h2 className="text-lg font-semibold">Total Ventas</h2>
           <p className="text-4xl font-bold text-orange-800">
             {totalVentas}
           </p>
         </div>
 
-        <div className="card bg-orange-100 border border-orange-300 p-6 text-center">
+        <div className="card bg-orange-100 border border-orange-300 p-6 text-center hover:scale-105 transition-all hover:bg-orange-200 hover:shadow-lg">
           <h2 className="text-lg font-semibold">Monto Total</h2>
           <p className="text-4xl font-bold text-orange-800">
             ${montoTotal.toLocaleString()}
           </p>
         </div>
 
-        <div className="card bg-orange-100 border border-orange-300 p-6 text-center">
+        <div className="card bg-orange-100 border border-orange-300 p-6 text-center hover:scale-105 transition-all hover:bg-orange-200 hover:shadow-lg">
           <h2 className="text-lg font-semibold">Productos Vendidos</h2>
           <p className="text-4xl font-bold text-orange-800">
             {productosVendidos}

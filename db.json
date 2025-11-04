@@ -29,6 +29,12 @@
       "nombre": "Cliente",
       "correo": "cliente@millapeluche.cl",
       "rol": "cliente"
+    },
+    {
+      "nombre": "javier",
+      "correo": "javi.moyano@duocuc.cl",
+      "rol": "admin",
+      "id": 3
     }
   ],
   "ventas": [

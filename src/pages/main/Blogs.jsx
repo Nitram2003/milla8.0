@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 const posts = [
 
-  { slug: 'cuidado-peluches', title:'Como cuidar tus pelcuches favoritos',Image:<img className="rounded-xl" src="https://i.pinimg.com/736x/b8/29/8c/b8298c280342b61895b76b9e941f8798.jpg" alt="Cómo cuidar tus peluches favoritos" />, excerpt: 'Consejos simples para que duren más.' },
+  { slug: 'El cuidado de los peluches', title:'Como cuidar tus pelcuches favoritos',Image:<img className="rounded-xl" src="https://i.pinimg.com/736x/b8/29/8c/b8298c280342b61895b76b9e941f8798.jpg" alt="Cómo cuidar tus peluches favoritos" />, excerpt: 'Consejos simples para que duren más.' },
   { slug: 'elige-el-peluche-perfecto', title:'Elige tu peluche perfecto', Image:<img className="rounded-xl" src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRt7sao9onTCiqRRDM-jTxMtAv-k9HCuJUV1Q&s" alt="Elige el peluche perfecto" />, excerpt: 'Qué considerar al momento de regalar.' },
   { slug: 'materiales-suaves', title: 'Materiales suaves y seguros', Image:<img className="rounded-xl" src="https://i5.walmartimages.com/seo/Pou-Plush-Toy-Doll-Cute-Hugging-Pillow-Plush-Stuffed-7-9-inch-20CM_4f48896e-fc4a-4d45-8830-95391069a58d.e265a16d123dbe7bfcf90d911ac26221.jpeg" alt="Materiales suaves y seguros" />, excerpt: 'Conoce nuestras telas favoritas.' },
 ]
