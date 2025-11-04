@@ -17,7 +17,7 @@ function CartIconWithCount() {
     : 0;
 
   return (
-    <div className="relative">
+    <div className="relative ">
       {/* Icono del carrito */}
       <svg
         xmlns="http://www.w3.org/2000/svg"

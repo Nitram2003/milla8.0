@@ -2,7 +2,7 @@ export default function Nosotros(){
     return(
         <section className="mx-auto max-w-3xl px-4 py-10 ">
             <article className="p-3 bg-amber-500 bg-opacity-50 rounded-lg mb-6">
-                <img className="w-full h-auto rounded-lg" src="https://www.shutterstock.com/image-vector/cute-cartoon-bear-doll-set-260nw-2439600369.jpg" alt="" />
+                <img className="w-full h-auto rounded-lg" src="https://image2url.com/images/1762258690108-dc074600-4e1c-4d3b-b6fe-58066763a1ac.png" alt="" />
             </article>
             <div className="card p-6 border-4">
                 <h1 className="text-3xl font-bold mb-3">Nosotros</h1>
