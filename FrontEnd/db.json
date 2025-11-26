@@ -1,0 +1,95 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Chocolo",
+      "precio": 14990,
+      "stock": 20,
+      "descripcion": "El perro bailarin mas famoso del mundo.",
+      "imagen": "https://image2url.com/images/1762235892693-dc85a7a3-7ae3-4203-b1ee-b7d73addf9cc.jpg"
+    },
+    {
+      "id": 2,
+      "nombre": "Chavito y Chilindrina",
+      "precio": 16990,
+      "stock": 15,
+      "descripcion": "hemos traido a estos personajes clasicos a la vida en peluche.",
+      "imagen": "https://image2url.com/images/1762235382825-8767e4c5-01a0-485f-bd54-85ee79f3882c.jpg"
+    },
+    {
+      "id": 3,
+      "nombre": "Anacleto",
+      "precio": 13990,
+      "stock": 25,
+      "descripcion": "Por cosas del destino no murio en la glaciacion.",
+      "imagen": "https://image2url.com/images/1762235360113-cfefe6ff-17b5-4ddf-a58a-03f852ee6431.jpg"
+    },
+    {
+      "id": 4,
+      "nombre": "Red Lady",
+      "precio": 15990,
+      "stock": 10,
+      "descripcion": "La elegancia en peluche.",
+      "imagen": "https://image2url.com/images/1762235330877-9ae109ec-feed-4cc9-9a62-a52bc35a6fb6.jpg"
+    },
+    {
+      "id": 5,
+      "nombre": "muñequita adorable",
+      "precio": 12990,
+      "stock": 30,
+      "descripcion": "Perfecta para abrazos y siestas.",
+      "imagen": "https://image2url.com/images/1762235301560-2125f4c4-a240-482f-a802-c0eabc7784fb.jpg"
+    },
+    {
+      "id": 6,
+      "nombre": "Downruto",
+      "precio": 69690,
+      "stock": 12,
+      "descripcion": "Tu personaje Favorito, Extra cromosomas de ternura.",
+      "imagen": "https://image2url.com/images/1762235278434-0e6a066c-1f40-4a89-94aa-fb9318f5aacd.jpg"
+    },
+    {
+      "id": 7,
+      "nombre": "Gata Lola",
+      "precio": 5990,
+      "stock": 18,
+      "descripcion": "Compañera perfecta para todas las aventuras.",
+      "imagen": "https://image2url.com/images/1762235198843-322a60e9-9f78-4fb6-924a-f25d3cd8f390.jpg"
+    },
+    {
+      "id": 8,
+      "nombre": "Pooh y sus Amigos",
+      "precio": 17990,
+      "stock": 14,
+      "descripcion": "Juega con tus personajes favoritos.",
+      "imagen": "https://image2url.com/images/1762235464964-ae9575f2-67cb-48ea-b186-9096b11a4f6b.jpg"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nombre": "Admin",
+      "correo": "admin@millapeluche.cl",
+      "rol": "admin"
+    },
+    {
+      "id": 2,
+      "nombre": "Cliente",
+      "correo": "cliente@millapeluche.cl",
+      "rol": "cliente"
+    },
+    {
+      "nombre": "javier",
+      "correo": "javi.moyano@duocuc.cl",
+      "rol": "admin",
+      "id": 3
+    },{
+      "nombre": "Martin",
+      "correo": "mart.torresr@duocuc.cl",
+      "rol": "admin",
+      "id": 4
+    }
+  ],
+  "ventas": [ 
+  ]
+}
