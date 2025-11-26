@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
   const nav = useNavigate();
@@ -7,36 +8,48 @@ export default function Login() {
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
 
+  const URL_LOGIN = "http://localhost:8080/api/personas/login";
+
+  // 🔥 Si ya está logueado → enviarlo según rol
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
     if (storedUser) {
-      if (storedUser.rol === "admin") nav("/admin");
-      else nav("/");
+      if (storedUser.rol === "admin") {
+        nav("/admin");
+      } else {
+        nav("/");
+      }
     }
   }, [nav]);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
-    // Credenciales admin
-    if (user === "admin" && pass === "admin") {
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ username: "admin", rol: "admin" })
+    try {
+      // Enviar credenciales al backend
+      const response = await axios.post(URL_LOGIN, {
+        username: user.trim(),
+        password: pass.trim(),
+      });
+
+      const userData = response.data;
+
+      // Guardar usuario en localStorage
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      // 🔥 Redirigir según rol
+      if (userData.rol === "admin") {
+        nav("/admin");
+      } else {
+        nav("/");
+      }
+
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+        "Credenciales inválidas. Inténtalo nuevamente."
       );
-      nav("/admin");
-      return;
-    }
-
-    // Buscar usuario registrado
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-    const found = users.find((u) => u.username === user && u.password === pass);
-
-    if (found) {
-      localStorage.setItem("user", JSON.stringify(found));
-      nav("/");
-    } else {
-      setError("Credenciales inválidas. Inténtalo nuevamente.");
     }
   };
 
@@ -63,6 +76,7 @@ export default function Login() {
             Entrar
           </button>
         </form>
+
         <p className="text-sm mt-4 opacity-80">
           ¿No tienes cuenta?{" "}
           <Link to="/registro" className="link">

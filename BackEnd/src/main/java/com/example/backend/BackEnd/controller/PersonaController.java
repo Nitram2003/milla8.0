@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.backend.BackEnd.model.Persona;
 import com.example.backend.BackEnd.repository.PersonaRepository;
 import com.example.backend.BackEnd.service.PersonaServicio;
+import java.util.Map;
 
 @RestController
-@RequestMapping("api/personas")
-public class PersonaController {
+@RequestMapping("/api/personas")
+    public class PersonaController {
     @Autowired
     private PersonaServicio personaServicio;
 
@@ -30,29 +31,44 @@ public class PersonaController {
     }
 
     @PostMapping("/save")
-public ResponseEntity<?> savePersona(@RequestBody Persona per){
-    try {
-        Persona personaGuardada = personaServicio.savePersona(per);
-        return ResponseEntity.ok(personaGuardada);
-    } catch (RuntimeException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
+    public ResponseEntity<?> savePersona(@RequestBody Persona per){
+        try {
+            Persona personaGuardada = personaServicio.savePersona(per);
+            return ResponseEntity.ok(personaGuardada);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }}
+    @PostMapping("/login")
+public ResponseEntity<?> login(@RequestBody Persona per) {
+
+    Optional<Persona> user = personaServicio.login(
+            per.getUsername(),
+            per.getPassword()
+    );
+
+    if (user.isPresent()) {
+        return ResponseEntity.ok(user.get());
     }
+
+    return ResponseEntity.status(401)
+            .body(Map.of("message", "Credenciales inválidas"));
 }
 
 
-    
     @DeleteMapping("/delete/{id}")
     public void deletePersona(@PathVariable Long id){
     personaServicio.deletePersona(id);
     }
+    
 
     @Autowired
     private PersonaRepository personaRepository;
+    
     @PutMapping("/update/{id}")
     public Optional <Object>
                 putPersona(@PathVariable Long id, @RequestBody Persona entity){
 
-            return personaRepository.findById(id)
+            return personaRepository.findById(id != null ? id : 0L)
                 .map(existePersona -> {
                     existePersona.setUsername(entity.getUsername());
                     existePersona.setEmail(entity.getEmail());

@@ -49,8 +49,7 @@ if (password !== confirmPassword) {
   const response = await axios.post(URL_API, {
     username: username,
     email: email,
-    password: password,
-    rol: "user"
+    password: password
   });
 
   alert("Registro exitoso. Ahora puedes iniciar sesión.");
