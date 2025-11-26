@@ -16,12 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.backend.BackEnd.model.Persona;
 import com.example.backend.BackEnd.repository.PersonaRepository;
+import com.example.backend.BackEnd.security.JwtUtil;
 import com.example.backend.BackEnd.service.PersonaServicio;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/personas")
     public class PersonaController {
+        
+    @Autowired
+    private JwtUtil jwtUtil;
+
     @Autowired
     private PersonaServicio personaServicio;
 
@@ -39,20 +44,32 @@ import java.util.Map;
             return ResponseEntity.badRequest().body(e.getMessage());
         }}
     @PostMapping("/login")
-public ResponseEntity<?> login(@RequestBody Persona per) {
-
-    Optional<Persona> user = personaServicio.login(
-            per.getUsername(),
-            per.getPassword()
-    );
+    public ResponseEntity<?> login(@RequestBody Persona per){
+    Optional<Persona> user = personaServicio.login(per.getUsername(), per.getPassword());
 
     if (user.isPresent()) {
-        return ResponseEntity.ok(user.get());
+
+        // Crear token
+        String token = jwtUtil.generateToken(
+                user.get().getUsername(),
+                user.get().getRol()
+        );
+
+        // Devolver token + user data
+        return ResponseEntity.ok(
+            Map.of(
+                "token", token,
+                "username", user.get().getUsername(),
+                "rol", user.get().getRol()
+            )
+        );
     }
 
     return ResponseEntity.status(401)
             .body(Map.of("message", "Credenciales inválidas"));
 }
+
+
 
 
     @DeleteMapping("/delete/{id}")

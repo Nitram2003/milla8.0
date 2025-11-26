@@ -10,15 +10,14 @@ export default function Login() {
 
   const URL_LOGIN = "http://localhost:8080/api/personas/login";
 
-  // 🔥 Si ya está logueado → enviarlo según rol
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      if (storedUser.rol === "admin") {
-        nav("/admin");
-      } else {
-        nav("/");
-      }
+    const token = localStorage.getItem("token");
+
+    // Si ya existe token guardado → dejar entrar automáticamente
+    if (storedUser && token) {
+      if (storedUser.rol === "admin") nav("/admin");
+      else nav("/");
     }
   }, [nav]);
 
@@ -27,7 +26,7 @@ export default function Login() {
     setError("");
 
     try {
-      // Enviar credenciales al backend
+      // Login al backend
       const response = await axios.post(URL_LOGIN, {
         username: user.trim(),
         password: pass.trim(),
@@ -35,15 +34,19 @@ export default function Login() {
 
       const userData = response.data;
 
+      // 🔥 Guardar token JWT
+      localStorage.setItem("token", userData.token);
+
+      // 🔥 Configurar axios para enviar token automáticamente
+      axios.defaults.headers.common["Authorization"] =
+        "Bearer " + userData.token;
+
       // Guardar usuario en localStorage
       localStorage.setItem("user", JSON.stringify(userData));
 
-      // 🔥 Redirigir según rol
-      if (userData.rol === "admin") {
-        nav("/admin");
-      } else {
-        nav("/");
-      }
+      // Redirección según rol
+      if (userData.rol === "admin") nav("/admin");
+      else nav("/");
 
     } catch (err) {
       setError(

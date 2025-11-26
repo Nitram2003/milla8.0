@@ -3,6 +3,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TestBCrypt",
+            "request": "launch",
+            "mainClass": "com.example.backend.BackEnd.TestBCrypt",
+            "projectName": "BackEnd"
+        },
+        {
+            "type": "java",
             "name": "BackEndApplication",
             "request": "launch",
             "mainClass": "com.example.backend.BackEnd.BackEndApplication",
