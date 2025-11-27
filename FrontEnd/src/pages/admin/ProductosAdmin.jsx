@@ -1,47 +1,99 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-const API = 'http://localhost:5000/productos'
+// 🔥 ENDPOINT REAL DEL BACKEND
+const API = 'http://localhost:8080/api/productos'
 
 export default function ProductosAdmin() {
   const [items, setItems] = useState([])
   const [loading, setLoading] = useState(true)
-  const [form, setForm] = useState({ nombre: '', descripcion: '', precio: 0, stock: 0, imagen: '' })
+  const [form, setForm] = useState({
+    nombre: '',
+    descripcion: '',
+    precio: 0,
+    stock: 0,
+    imagen: ''
+  })
   const [editing, setEditing] = useState(null)
 
+  // 🔹 Cargar productos desde la BD
   async function load() {
     setLoading(true)
-    const { data } = await axios.get(API)
-    setItems(data)
+    try {
+      const { data } = await axios.get(`${API}/all`)
+      setItems(data)
+    } catch (e) {
+      console.error("Error cargando productos:", e)
+    }
     setLoading(false)
   }
+
   useEffect(() => { load() }, [])
 
-  function onChange(e) { setForm(prev => ({ ...prev, [e.target.name]: e.target.value })) }
+  function onChange(e) {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }))
+  }
 
+  // 🔹 AGREGAR PRODUCTO
   async function add() {
-    await axios.post(API, { ...form, precio: Number(form.precio), stock: Number(form.stock) })
-    setForm({ nombre: '', descripcion: '', precio: 0, stock: 0, imagen: '' })
-    load()
+    try {
+      await axios.post(`${API}/save`, {
+        ...form,
+        precio: Number(form.precio),
+        stock: Number(form.stock)
+      })
+
+      setForm({ nombre: '', descripcion: '', precio: 0, stock: 0, imagen: '' })
+      load()
+    } catch (e) {
+      console.error("Error agregando producto:", e)
+    }
   }
+
+  // 🔹 EDITAR PRODUCTO
   async function update() {
-    await axios.put(`${API}/${editing}`, { ...form, precio: Number(form.precio), stock: Number(form.stock) })
-    setEditing(null)
-    setForm({ nombre: '', descripcion: '', precio: 0, stock: 0, imagen: '' })
-    load()
+    try {
+      await axios.put(`${API}/update/${editing}`, {
+        ...form,
+        precio: Number(form.precio),
+        stock: Number(form.stock)
+      })
+
+      setEditing(null)
+      setForm({ nombre: '', descripcion: '', precio: 0, stock: 0, imagen: '' })
+      load()
+    } catch (e) {
+      console.error("Error actualizando producto:", e)
+    }
   }
+
+  // 🔹 Cargar datos de producto seleccionado
   async function edit(it) {
     setEditing(it.id)
-    setForm({ nombre: it.nombre, descripcion: it.descripcion, precio: it.precio, stock: it.stock, imagen: it.imagen || '' })
+    setForm({
+      nombre: it.nombre,
+      descripcion: it.descripcion,
+      precio: it.precio,
+      stock: it.stock,
+      imagen: it.imagen || ''
+    })
   }
+
+  // 🔹 ELIMINAR PRODUCTO
   async function remove(id) {
-    await axios.delete(`${API}/${id}`)
-    load()
+    try {
+      await axios.delete(`${API}/delete/${id}`)
+      load()
+    } catch (e) {
+      console.error("Error eliminando producto:", e)
+    }
   }
 
   return (
     <section>
       <h1 className="text-3xl font-bold mb-4">Productos</h1>
+
+      {/* FORMULARIO */}
       <div className="card p-4 mb-6">
         <div className="grid md:grid-cols-5 gap-3">
           <input name="nombre" value={form.nombre} onChange={onChange} placeholder="Nombre" className="rounded-xl border p-2" />
@@ -50,18 +102,25 @@ export default function ProductosAdmin() {
           <input name="stock" value={form.stock} onChange={onChange} placeholder="Stock" type="number" className="rounded-xl border p-2" />
           <input name="imagen" value={form.imagen} onChange={onChange} placeholder="URL Imagen" className="rounded-xl border p-2" />
         </div>
+
         <div className="mt-3">
           {!editing ? (
             <button className="btn-primary" onClick={add}>Agregar producto</button>
           ) : (
             <div className="flex gap-2">
               <button className="btn-primary" onClick={update}>Guardar cambios</button>
-              <button className="btn-ghost" onClick={() => { setEditing(null); setForm({ nombre:'', descripcion:'', precio:0, stock:0, imagen:'' })}}>Cancelar</button>
+              <button className="btn-ghost" onClick={() => {
+                setEditing(null)
+                setForm({ nombre:'', descripcion:'', precio:0, stock:0, imagen:'' })
+              }}>
+                Cancelar
+              </button>
             </div>
           )}
         </div>
       </div>
 
+      {/* TABLA */}
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white rounded-2xl overflow-hidden">
           <thead className="bg-orange-200 text-left">
@@ -73,6 +132,7 @@ export default function ProductosAdmin() {
               <th className="p-3">Acciones</th>
             </tr>
           </thead>
+
           <tbody>
             {loading ? (
               <tr><td className="p-3" colSpan="5">Cargando...</td></tr>
@@ -89,6 +149,7 @@ export default function ProductosAdmin() {
               </tr>
             ))}
           </tbody>
+
         </table>
       </div>
     </section>

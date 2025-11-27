@@ -83,13 +83,42 @@
       "correo": "javi.moyano@duocuc.cl",
       "rol": "admin",
       "id": 3
-    },{
+    },
+    {
       "nombre": "Martin",
       "correo": "mart.torresr@duocuc.cl",
       "rol": "admin",
       "id": 4
     }
   ],
-  "ventas": [ 
+  "ventas": [
+    {
+      "idPedido": "MP-20251127-3787",
+      "cliente": "aaa",
+      "correo": "aaa@aaa",
+      "fecha": "11/27/2025, 3:17:25 PM",
+      "total": 93791,
+      "productos": [
+        {
+          "id": 9,
+          "nombre": "aaa",
+          "cantidad": 1,
+          "precio": 11111
+        },
+        {
+          "id": 6,
+          "nombre": "Downruto",
+          "cantidad": 1,
+          "precio": 69690
+        },
+        {
+          "id": 5,
+          "nombre": "Muñequita adorable",
+          "cantidad": 1,
+          "precio": 12990
+        }
+      ],
+      "id": 1
+    }
   ]
 }

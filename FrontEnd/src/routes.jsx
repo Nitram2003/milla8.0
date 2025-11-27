@@ -3,7 +3,7 @@ import ProtectedRoute from './pages/admin/ProtectedRoute.jsx'
 
 import InicioMain from './pages/main/InicioMain.jsx'
 import Productos from './pages/main/Productos.jsx'
-import ProductoDetalle from './pages/main/ProductoDetalle.jsx'
+// import ProductoDetalle from './pages/main/ProductoDetalle.jsx'
 import Blogs from './pages/main/Blogs.jsx'
 import BlogDetalle from './pages/main/BlogDetalle.jsx'
 import Nosotros from './pages/main/Nosotros.jsx'
@@ -48,7 +48,7 @@ const routes = [
     children: [
       { path: '/', element: <InicioMain /> },
       { path: '/productos', element: <Productos /> },
-      { path: '/producto', element: <ProductoDetalle /> },
+      // { path: '/producto', element: <ProductoDetalle /> },
       { path: '/blogs', element: <Blogs /> },
       { path: '/blog/:slug', element: <BlogDetalle /> },
       { path: '/nosotros', element: <Nosotros /> },

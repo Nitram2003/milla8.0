@@ -2,20 +2,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCarrito } from "../../store/useCarrito";
 
-const API = "http://localhost:5000/productos";
+const API = "http://localhost:8080/api/productos/all"; // 🔹 API real del backend
 
 export default function Productos() {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { addItem, reload } = useCarrito(); // 🔹 incluir reload
+  const { addItem, reload } = useCarrito();
   const [alerta, setAlerta] = useState("");
 
-  // 🔹 Al montar, recargar carrito del usuario actual
+  // 🔹 Recargar carrito al entrar
   useEffect(() => {
     reload();
   }, []);
 
-  // 🔹 Cargar productos desde la API
+  // 🔹 Cargar productos en tiempo real desde BD
   useEffect(() => {
     async function fetchData() {
       try {
@@ -30,7 +30,7 @@ export default function Productos() {
     fetchData();
   }, []);
 
-  // 🔹 Agregar al carrito + mostrar alerta temporal
+  // 🔹 Agregar producto al carrito
   const handleAdd = (p) => {
     addItem(p);
     setAlerta(`🧸 ${p.nombre} agregado al carrito`);
@@ -39,7 +39,6 @@ export default function Productos() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-10 relative">
-      {/* 🔸 Alerta flotante */}
       {alerta && (
         <div className="fixed top-6 right-6 bg-orange-100 border border-orange-300 text-orange-900 px-4 py-2 rounded-xl shadow-md z-50 animate-fade-in">
           {alerta}
@@ -50,7 +49,6 @@ export default function Productos() {
         Nuestros Peluches
       </h1>
 
-      {/* 🔸 Estado de carga */}
       {loading ? (
         <p className="opacity-70">Cargando productos...</p>
       ) : productos.length === 0 ? (
@@ -77,6 +75,7 @@ export default function Productos() {
               <h2 className="text-lg font-semibold text-orange-900 mb-1">
                 {p.nombre}
               </h2>
+
               <p className="text-sm text-gray-600 mb-2">{p.descripcion}</p>
 
               <p className="font-bold text-orange-700 mb-3">
