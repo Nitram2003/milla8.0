@@ -1,4 +1,4 @@
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 import { useEffect, useState } from "react";
 
 export default function Comentarios() {
@@ -6,7 +6,7 @@ export default function Comentarios() {
   const [respuesta, setRespuesta] = useState("");
 
   const load = async () => {
-    const res = await axios.get("http://localhost:8080/api/comentarios/all");
+    const res = await axiosClient.get("http://localhost:8080/api/comentarios/all");
     setComentarios(res.data);
   };
 
@@ -15,7 +15,7 @@ export default function Comentarios() {
   }, []);
 
   const responder = async (id) => {
-    await axios.post(`http://localhost:8080/api/comentarios/responder/${id}`, {
+    await axiosClient.post(`http://localhost:8080/api/comentarios/responder/${id}`, {
       respuesta
     });
     setRespuesta("");

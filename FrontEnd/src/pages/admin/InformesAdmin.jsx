@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 import {
   Chart as ChartJS,
   LineElement,
@@ -29,8 +29,8 @@ export default function InformesAdmin() {
     const fetchData = async () => {
       try {
         const [v, p] = await Promise.all([
-          axios.get(API_VENTAS),
-          axios.get(API_PRODUCTOS),
+          axiosClient.get(API_VENTAS),
+          axiosClient.get(API_PRODUCTOS),
         ]);
 
         setVentas(v.data);

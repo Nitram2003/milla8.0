@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from 'axios';
+import axiosClient from "../../api/axiosClient";
 
 export default function Registro() {
   const [username, setUsername] = useState("");
@@ -46,7 +46,7 @@ if (password !== confirmPassword) {
 
 
     try {
-  const response = await axios.post(URL_API, {
+  const response = await axiosClient.post(URL_API, {
     username: username,
     email: email,
     password: password

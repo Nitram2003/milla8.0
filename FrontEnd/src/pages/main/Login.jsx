@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 
 export default function Login() {
   const nav = useNavigate();
@@ -8,7 +8,7 @@ export default function Login() {
   const [pass, setPass] = useState("");
   const [error, setError] = useState("");
 
-  const URL_LOGIN = "http://localhost:8080/api/personas/login";
+  const URL_LOGIN = "/api/personas/login";
 
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
@@ -26,8 +26,8 @@ export default function Login() {
     setError("");
 
     try {
-      // Login al backend
-      const response = await axios.post(URL_LOGIN, {
+      // 🔥 Login al backend usando axiosClient
+      const response = await axiosClient.post(URL_LOGIN, {
         username: user.trim(),
         password: pass.trim(),
       });
@@ -37,14 +37,10 @@ export default function Login() {
       // 🔥 Guardar token JWT
       localStorage.setItem("token", userData.token);
 
-      // 🔥 Configurar axios para enviar token automáticamente
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer " + userData.token;
-
-      // Guardar usuario en localStorage
+      // 🔥 Guardar usuario completo (incluye rol)
       localStorage.setItem("user", JSON.stringify(userData));
 
-      // Redirección según rol
+      // 🔥 Redirección según rol
       if (userData.rol === "admin") nav("/admin");
       else nav("/");
 
@@ -60,6 +56,7 @@ export default function Login() {
     <section className="mx-auto max-w-md px-4 py-12">
       <div className="card p-6">
         <h1 className="text-3xl font-bold mb-4">Iniciar sesión</h1>
+
         <form className="space-y-3" onSubmit={onSubmit}>
           <input
             className="w-full rounded-xl border p-3"
@@ -67,6 +64,7 @@ export default function Login() {
             value={user}
             onChange={(e) => setUser(e.target.value)}
           />
+
           <input
             className="w-full rounded-xl border p-3"
             placeholder="Contraseña"
@@ -74,7 +72,9 @@ export default function Login() {
             value={pass}
             onChange={(e) => setPass(e.target.value)}
           />
+
           {error && <p className="text-red-600 text-sm">{error}</p>}
+
           <button className="btn-primary w-full" type="submit">
             Entrar
           </button>

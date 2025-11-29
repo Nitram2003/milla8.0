@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 
 const API = "http://localhost:8080/api/personas/all";
 
@@ -11,7 +11,7 @@ export default function Usuarios() {
   async function loadUsers() {
     try {
       setLoading(true);
-      const res = await axios.get(API);
+      const res = await axiosClient.get(API);
       setUsers(res.data);
     } catch (err) {
       console.error("Error cargando usuarios:", err);

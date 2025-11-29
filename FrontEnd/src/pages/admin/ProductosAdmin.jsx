@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axiosClient from "../../api/axiosClient";
 import { useEffect, useState } from 'react'
 
 // 🔥 ENDPOINT REAL DEL BACKEND
@@ -20,7 +20,7 @@ export default function ProductosAdmin() {
   async function load() {
     setLoading(true)
     try {
-      const { data } = await axios.get(`${API}/all`)
+      const { data } = await axiosClient.get(`${API}/all`)
       setItems(data)
     } catch (e) {
       console.error("Error cargando productos:", e)
@@ -37,7 +37,7 @@ export default function ProductosAdmin() {
   // 🔹 AGREGAR PRODUCTO
   async function add() {
     try {
-      await axios.post(`${API}/save`, {
+      await axiosClient.post(`${API}/save`, {
         ...form,
         precio: Number(form.precio),
         stock: Number(form.stock)
@@ -53,7 +53,7 @@ export default function ProductosAdmin() {
   // 🔹 EDITAR PRODUCTO
   async function update() {
     try {
-      await axios.put(`${API}/update/${editing}`, {
+      await axiosClient.put(`${API}/update/${editing}`, {
         ...form,
         precio: Number(form.precio),
         stock: Number(form.stock)
@@ -82,7 +82,7 @@ export default function ProductosAdmin() {
   // 🔹 ELIMINAR PRODUCTO
   async function remove(id) {
     try {
-      await axios.delete(`${API}/delete/${id}`)
+      await axiosClient.delete(`${API}/delete/${id}`)
       load()
     } catch (e) {
       console.error("Error eliminando producto:", e)

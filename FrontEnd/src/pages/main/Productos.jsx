@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 import { useCarrito } from "../../store/useCarrito";
 
 const API = "http://localhost:8080/api/productos/all"; // 🔹 API real del backend
@@ -19,7 +19,7 @@ export default function Productos() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const { data } = await axios.get(API);
+        const { data } = await axiosClient.get(API);
         setProductos(data);
       } catch (err) {
         console.error("Error al cargar productos:", err);

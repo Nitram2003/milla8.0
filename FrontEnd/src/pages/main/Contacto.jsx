@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 
 export default function Contacto() {
   const [nombre, setNombre] = useState("");
@@ -25,7 +25,7 @@ export default function Contacto() {
   useEffect(() => {
     if (!nombre) return;
 
-    axios.get("http://localhost:8080/api/comentarios/all")
+    axiosClient.get("http://localhost:8080/api/comentarios/all")
       .then((res) => {
         const comentariosUsuario = res.data.filter(c => c.nombre === nombre);
 
@@ -49,7 +49,7 @@ export default function Contacto() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await axios.post("http://localhost:8080/api/comentarios/save", {
+    await axiosClient.post("http://localhost:8080/api/comentarios/save", {
       nombre,
       tipo,
       mensaje
@@ -61,7 +61,7 @@ export default function Contacto() {
 
     // refrescar burbujas
     setTimeout(() => {
-      axios.get("http://localhost:8080/api/comentarios/all")
+      axiosClient.get("http://localhost:8080/api/comentarios/all")
         .then((res) => {
           const comentariosUsuario = res.data.filter(c => c.nombre === nombre);
           const ultimo = comentariosUsuario[comentariosUsuario.length - 1];

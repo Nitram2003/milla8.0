@@ -1,7 +1,7 @@
 import { useCarrito } from "../../store/useCarrito";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 
 const API_VENTAS = "http://localhost:8080/api/ventas/save";
 const API_ME = "http://localhost:8080/api/personas/me";
@@ -21,7 +21,7 @@ export default function Pago() {
 
     const fetchUser = async () => {
       try {
-        const res = await axios.get(API_ME, {
+        const res = await axiosClient.get(API_ME, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -74,7 +74,7 @@ export default function Pago() {
     };
 
     try {
-      await axios.post(API_VENTAS, venta);
+      await axiosClient.post(API_VENTAS, venta);
       clear();
       nav("/compra-exitosa", { state: { pedido: codigoPedido } });
     } catch (err) {

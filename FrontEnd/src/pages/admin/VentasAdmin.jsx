@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 
 
 
@@ -13,7 +13,7 @@ export default function VentasAdmin() {
   useEffect(() => {
     const fetchVentas = async () => {
       try {
-        const { data } = await axios.get(API_VENTAS);
+        const { data } = await axiosClient.get(API_VENTAS);
         setVentas(data);
       } catch (error) {
         console.error("Error cargando ventas:", error);

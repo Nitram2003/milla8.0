@@ -70,9 +70,7 @@ public class SecurityConfig {
                         "/api/comentarios/all",
                         "/api/productos/all",
                         "/api/ventas/save",
-                        "/error",
-                        "/**/*.css",
-                        "/**/*.js"
+                        "/error"
                 ).permitAll()
 
                 // 🔐 SOLO ADMIN

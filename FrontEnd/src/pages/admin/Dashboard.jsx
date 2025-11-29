@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
 
 // ✅ ENDPOINTS CORRECTOS PARA TU BACKEND
 const API_VENTAS = "http://localhost:8080/api/ventas/all";
@@ -18,9 +18,9 @@ export default function Dashboard() {
       try {
         // ⬇ Consultar todo al mismo tiempo
         const [vRes, pRes, uRes] = await Promise.all([
-          axios.get(API_VENTAS),
-          axios.get(API_PRODUCTOS),
-          axios.get(API_USUARIOS),
+          axiosClient.get(API_VENTAS),
+          axiosClient.get(API_PRODUCTOS),
+          axiosClient.get(API_USUARIOS),
         ]);
 
         const ventasData = vRes.data;
@@ -87,7 +87,7 @@ function VentasRecientes() {
   const [ventas, setVentas] = useState([]);
 
   useEffect(() => {
-    axios.get(API_VENTAS).then(({ data }) => {
+    axiosClient.get(API_VENTAS).then(({ data }) => {
       // ⬇ Obtener las últimas 3 ventas (ID más alto)
       setVentas(data.slice(-3).reverse());
     });

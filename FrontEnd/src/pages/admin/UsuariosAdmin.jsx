@@ -1,4 +1,5 @@
-import axios from "axios";
+import axiosClient from "../../api/axiosClient";
+
 import { useEffect, useState } from "react";
 
 const API = "http://localhost:8080/api/personas";
@@ -22,7 +23,7 @@ export default function UsuariosAdmin() {
   async function load() {
     try {
       setLoading(true);
-      const res = await axios.get(`${API}/all`);
+      const res = await axiosClient.get(`${API}/all`);
       setItems(res.data);
     } catch (err) {
       console.error("Error cargando usuarios:", err);
@@ -45,7 +46,7 @@ export default function UsuariosAdmin() {
   // =============================
   async function add() {
     try {
-      await axios.post(`${API}/save`, { ...form });
+      await axiosClient.post(`${API}/save`, { ...form });
       setForm({ username: "", email: "", password: "", rol: "user" });
       await load();  // <-- recargar tabla desde BD
     } catch (err) {
@@ -58,7 +59,7 @@ export default function UsuariosAdmin() {
   // =============================
   async function update() {
     try {
-      await axios.put(`${API}/update/${editing}`, { ...form });
+      await axiosClient.put(`${API}/update/${editing}`, { ...form });
       setEditing(null);
       setForm({ username: "", email: "", password: "", rol: "user" });
       await load();  // <-- recargar tabla desde BD
@@ -83,7 +84,7 @@ export default function UsuariosAdmin() {
   // =============================
   async function remove(id) {
     if (!confirm("¿Eliminar usuario?")) return;
-    await axios.delete(`${API}/delete/${id}`);
+    await axiosClient.delete(`${API}/delete/${id}`);
     await load();  // <-- recargar tabla desde BD
   }
 
