@@ -40,4 +40,37 @@ describe("Componente Login", async() => {
         const loginTitle = screen.getByRole("heading", { name: /Iniciar sesión/i });
         expect(loginTitle).toBeInTheDocument();
     })
+    it("permite presionar Entrar sin romper el componente", async () => {
+    render(
+        <MemoryRouter>
+            <Login />
+        </MemoryRouter>
+    );
+
+    const btn = screen.getByRole("button", { name: /Entrar/i });
+    const user = userEvent.setup();
+
+    await user.click(btn);
+
+    // Verificamos que el botón siga existiendo (el componente no se cae)
+    expect(btn).toBeInTheDocument();
+});
+
+it("permite presionar Entrar sin romper el componente", async () => {
+    render( 
+        <MemoryRouter>
+            <Login />
+        </MemoryRouter>
+    );
+
+    const btn = screen.getByRole("button", { name: /entrar/i });
+    const user = userEvent.setup();
+    
+    await user.click(btn);
+
+    // Solo verificamos que el botón existe (el componente no se rompe)
+    expect(btn).toBeInTheDocument();
+});
+
+
 })

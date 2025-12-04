@@ -29,7 +29,7 @@ public class CommentService {
 
         c.setRespondido(true);
         c.setRespuesta(respuesta);
-        c.setAdminNombre(adminNombre); // 🔥 Guardar nombre del admin
+        c.setAdminNombre(adminNombre); // Guardar nombre del admin
 
         return repo.save(c);
     }

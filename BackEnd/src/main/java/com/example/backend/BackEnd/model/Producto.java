@@ -18,6 +18,5 @@ public class Producto {
     private Double precio;
     private int stock;
 
-    // URL o ruta de imagen
     private String imagen;
 }

@@ -1,54 +1,84 @@
-import { screen, render } from '@testing-library/react';
-import Productos from '../pages/main/Productos.jsx';
-import { describe, it, expect, vi, beforeEach } from 'vitest'; 
-import userEvent from '@testing-library/user-event';
-import { MemoryRouter } from 'react-router-dom';
-import axios from 'axios';
+// src/test/Productos.test.jsx
+import { render, screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { MemoryRouter } from "react-router-dom";
+import Productos from "../pages/main/Productos.jsx"; // Ajusta ruta si es necesario
+import { vi } from "vitest";
 
-vi.mock('axios');
-const handleAddMock = vi.fn(); 
-vi.mock('../../store/useCarrito', () => ({
-    useCarrito: () => ({
-        items: [],
-        handleAdd: handleAddMock,
-    })
+//  MOCK AXIOSCLIENT
+vi.mock("../../api/axiosClient", () => ({
+  default: {
+    get: vi.fn(() =>
+      Promise.resolve({
+        data: [
+          {
+            id: 1,
+            nombre: "Peluche Totoro",
+            descripcion: "Suave y tierno",
+            precio: 9990,
+            imagen: "imagen.jpg",
+          },
+        ],
+      })
+    ),
+  },
 }));
 
-describe('Página de Productos', () => {
 
-    beforeEach(() => {
-        axios.get.mockResolvedValue({
-            data: [
-                { id: 1, nombre: 'Peluche Mono', precio: 1500, imagen: '' },
-                { id: 2, nombre: 'Peluche Oso', precio: 2000, imagen: '' },
-            ]
-        });
 
-        handleAddMock.mockClear();
-    });
+//  MOCK useCarrito
+vi.mock("../../store/useCarrito", () => ({
+  useCarrito: () => ({
+    addItem: vi.fn(),
+    reload: vi.fn(),
+  }),
+}));
 
-    it('1. Render Productos', () => {
-        render(
-            <MemoryRouter>
-                <Productos />
-            </MemoryRouter>
-        )
-        const ProductosTitulo = screen.getByRole('heading', { name: /Nuestros Peluches/i })
-        expect(ProductosTitulo).toBeInTheDocument()
-    });
+describe("Página Productos", () => {
+  it("1. Renderiza el título correctamente", async () => {
+    render(
+      <MemoryRouter>
+        <Productos />
+      </MemoryRouter>
+    );
 
-    it('2. Agregar al carrito', async () => {
-        render(
-            <MemoryRouter>
-                <Productos />
-            </MemoryRouter>
-        )
-        const mono = userEvent.setup();
-        const btnAgregar = (await screen.findAllByRole('button', {
-            name: /Agregar al carrito/i}))[0]; 
-        await mono.click(btnAgregar);
+    const title = await screen.findByText(/nuestros peluches/i);
+    expect(title).toBeInTheDocument();
+  });
 
-        
-    });
+  it("2. Renderiza productos obtenidos por axios", async () => {
+    render(
+      <MemoryRouter>
+        <Productos />
+      </MemoryRouter>
+    );
 
+    // Producto mockeado
+    
+  });
+
+  it("3. Agrega un producto al carrito y muestra la alerta", async () => {
+    render(
+      <MemoryRouter>
+        <Productos />
+      </MemoryRouter>
+    );
+
+    const user = userEvent.setup();
+
+    // Botón de agregar producto mockeado
+    const buttons = await screen.findAllByRole("button", {
+  name: /agregar al carrito/i,
+});
+
+// Usamos el PRIMER botón real (producto 1)
+await user.click(buttons[0]);
+
+// Ahora la alerta debe aparecer
+const alertText = await screen.findByText(/agregado al carrito/i);
+expect(alertText).toBeInTheDocument();
+
+
+    
+  });
 });

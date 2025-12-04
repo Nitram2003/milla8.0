@@ -17,6 +17,7 @@ describe('Carrito de Compras', () => {
         expect (link).toBeInTheDocument()
         expect (CarritoTitulo).toBeInTheDocument()
     })
+    
     it('2. Carrito con items', async () => {
         render(
         <MemoryRouter>
@@ -27,5 +28,6 @@ describe('Carrito de Compras', () => {
         mono.click(screen.getByRole('link',{name:/Ir a productos/i}));
         expect (screen.getByRole('link',{name:/Ir a productos/i})).toBeInTheDocument();
     });
+    
         
 });

@@ -20,7 +20,6 @@ public class VentaServicio {
 
         venta.setFecha(LocalDateTime.now());
 
-        // Relacionar cada detalle con la venta
         for (VentaDetalle d : venta.getDetalles()) {
             d.setVenta(venta);
         }

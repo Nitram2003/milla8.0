@@ -26,7 +26,7 @@ export default function Login() {
     setError("");
 
     try {
-      // 🔥 Login al backend usando axiosClient
+      //  Login al backend usando axiosClient
       const response = await axiosClient.post(URL_LOGIN, {
         username: user.trim(),
         password: pass.trim(),
@@ -34,18 +34,18 @@ export default function Login() {
 
       const userData = response.data;
 
-      // 🔥 Guardar token JWT
+      //  Guardar token JWT
       localStorage.setItem("token", userData.token);
 
-      // 🔥 Guardar usuario completo (incluye rol)
+      //  Guardar usuario completo (incluye rol)
       localStorage.setItem("user", JSON.stringify(userData));
 
-      // 🔥 Redirección según rol
+      //  Redirección según rol
       if (userData.rol === "admin") nav("/admin");
       else nav("/");
 
     } catch (err) {
-      setError(
+      setError( 
         err.response?.data?.message ||
         "Credenciales inválidas. Inténtalo nuevamente."
       );

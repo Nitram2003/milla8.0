@@ -9,6 +9,7 @@ beforeEach(() => {
   useCarrito.setState({ items: [] });
   localStorage.clear();
 });
+
 // PROBAMOS AGREGAR PRODUCTOS AL CARRITO
 test("agrega un producto al carrito", () => {
   const { addItem, items } = useCarrito.getState();
@@ -44,6 +45,7 @@ test("debe vaciar completamente el carrito al eliminar todos los productos", () 
 
     expect(useCarrito.getState().items.length).toBe(0);
   });
+  
 
 
         

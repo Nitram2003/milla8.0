@@ -32,7 +32,7 @@ public class PersonaServicio {
             throw new RuntimeException("El nombre de usuario ya existe.");
         }
 
-        // 🔥 Si NO viene rol desde el Frontend → por defecto USER
+        // Si NO viene rol desde el Frontend → por defecto USER
         if (persona.getRol() == null || persona.getRol().trim().isEmpty()) {
             persona.setRol("user");
         }
@@ -69,7 +69,7 @@ public class PersonaServicio {
         }
 
         return personaRepository.save(persona);
-    }
+    }   
 
     // Eliminar usuario
     public void deletePersona(Long id) {

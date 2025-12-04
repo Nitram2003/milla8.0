@@ -62,18 +62,20 @@ public class SecurityConfig {
             .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
 
-                // 🔥 RUTAS PÚBLICAS
                 .requestMatchers(
                         "/api/personas/login",
                         "/api/personas/save",
                         "/api/comentarios/save",
                         "/api/comentarios/all",
                         "/api/productos/all",
+                        "/api/productos/save",
+                        "/api/productos/delete/**",
                         "/api/ventas/save",
-                        "/error"
+                        "/error",
+                        "/swagger-ui/**",
+                        "/v3/api-docs/**"
                 ).permitAll()
 
-                // 🔐 SOLO ADMIN
                 .requestMatchers("/api/productos/**").hasRole("ADMIN")
                 .requestMatchers("/api/ventas/**").hasRole("ADMIN")
                 .requestMatchers("/api/personas/update/**").hasRole("ADMIN")
@@ -82,7 +84,6 @@ public class SecurityConfig {
                 .requestMatchers("/api/comentarios/responder/**").hasRole("ADMIN")
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
 
-                // 🔒 RESTO REQUIERE TOKEN
                 .anyRequest().authenticated()
             )
             .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

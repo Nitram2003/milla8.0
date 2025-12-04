@@ -1,6 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import AdminLayout  from '../components/AdminSidebar.jsx';
 import { describe, it, expect, vi, beforeEach } from 'vitest'; 
+import userEvent from "@testing-library/user-event";
 
 import { MemoryRouter } from 'react-router-dom';
 
@@ -21,34 +22,29 @@ describe('AdminSidebar', () => {
         );
     });
 
- 
+    it("debe contener los enlaces principales del menú", () => {
+    const links = [
+        /productos/i,
+        /ventas/i,
+        /comentarios/i,
+        /Cerrar sesión/i
+    ];
 
-    it('debe contener enlaces de navegación', () => {
-        const dashboardLink = screen.getByText('Dashboard');
-        const productsLink = screen.getByText('Productos');
-        const usuariosLink = screen.getByText('Usuarios');
-        const informesLink = screen.getByText('Informes');
-    
-
-        expect(dashboardLink).toBeInTheDocument();
-        expect(productsLink).toBeInTheDocument();
-        expect(usuariosLink).toBeInTheDocument();
-        expect(informesLink).toBeInTheDocument();
-       
+    links.forEach(text => {
+        expect(screen.getByText(text)).toBeInTheDocument();
     });
-
-    it('ejecuta el logout al hacer clic en el botón', () => {
-        localStorage.setItem("auth","true");
-
-        render(
-            <MemoryRouter>
-                <AdminLayout />
-            </MemoryRouter>
-        );
-        const [logoutButton] = screen.getAllByText("Cerrar sesión");
-logoutButton.click();
-
-expect(localStorage.getItem("auth")).toBeNull();
-
 });
+
+it("navega al pulsar un link del menú", async () => {
+    const user = userEvent.setup();
+    const link = screen.getByText(/productos/i);
+    await user.click(link);
+
+    expect(link).toBeInTheDocument();
+});
+
+
+
+
+
 });

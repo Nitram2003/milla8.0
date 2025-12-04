@@ -28,7 +28,7 @@ protected void doFilterInternal(HttpServletRequest request,
                                 FilterChain filterChain)
         throws ServletException, IOException {
 
-    // 🔥 Permitir preflight CORS sin validación JWT
+    //  Permitir preflight CORS sin validación JWT
     if ("OPTIONS".equalsIgnoreCase(request.getMethod())) {
         response.setStatus(HttpServletResponse.SC_OK);
         return;

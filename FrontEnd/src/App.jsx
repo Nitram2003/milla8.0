@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 
 export default function App() {
   const location = useLocation();
-  const hideNavbar = location.pathname.startsWith("/admin"); // ✅ detecta modo admin
+  const hideNavbar = location.pathname.startsWith("/admin"); // detecta modo admin
 
   return (
     <div className="min-h-screen flex flex-col">
